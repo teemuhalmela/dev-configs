@@ -12,4 +12,4 @@ if [ -d $subtext ]; then
     rm -rf $subtext
 fi
 
-ln -s $PWD/User $subtext
+ln -sf $PWD/User $subtext
