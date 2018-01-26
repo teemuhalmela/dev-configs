@@ -1,0 +1,2 @@
+# Is one time enough or should we put this somewhere?
+setxkbmap -option "nbsp:none"

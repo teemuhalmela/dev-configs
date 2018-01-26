@@ -1,0 +1,4 @@
+Use SharpKeys https://github.com/randyrants/sharpkeys
+
+Map
+  Special: Caps Lock (00_3A) -> Special: Left Ctrl (00_1D)

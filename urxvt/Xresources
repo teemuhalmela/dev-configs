@@ -1,4 +1,5 @@
 !! Solarized color theme
+!! https://github.com/solarized/xresources
 
 #define S_base03        #002b36
 #define S_base02        #073642
