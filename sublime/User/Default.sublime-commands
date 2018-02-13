@@ -1,3 +1,4 @@
 [
-    { "caption": "Xml PP", "command": "xmlpp" }
+    { "caption": "Xml PP", "command": "xmlpp" },
+    { "caption": "Json PP", "command": "jsonpp" }
 ]
