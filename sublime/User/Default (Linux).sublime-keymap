@@ -3,4 +3,5 @@
     { "keys": ["ctrl+shift+'"], "command": "toggle_comment", "args": { "block": true } },
     { "keys": ["ctrl+alt+up"], "command": "select_lines", "args": {"forward": false} },
     { "keys": ["ctrl+alt+down"], "command": "select_lines", "args": {"forward": true} },
+    { "keys": ["ctrl+§"], "command": "show_panel", "args": {"panel": "console", "toggle": true} }
 ]
