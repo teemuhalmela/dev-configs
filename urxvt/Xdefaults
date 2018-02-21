@@ -7,7 +7,7 @@ Xft.hinting:                true
 Xft.hintstyle:              hintslight
 
 URxvt.depth:                32
-URxvt.geometry:             180x60
+URxvt.geometry:             180x50
 URxvt.transparent:          false
 URxvt.fading:               0
 URxvt.loginShell:           true

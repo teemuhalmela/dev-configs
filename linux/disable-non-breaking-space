@@ -1,2 +1,4 @@
-# Is one time enough or should we put this somewhere?
+# Instant effect
 setxkbmap -option "nbsp:none"
+# Put this line into /etc/default/keyboard for permanent fix
+XKBOPTIONS="nbsp:none"

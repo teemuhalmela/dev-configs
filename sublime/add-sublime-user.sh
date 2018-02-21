@@ -13,3 +13,8 @@ if [ -d $subtext ]; then
 fi
 
 ln -sf $PWD/User $subtext
+
+# TODO: Add other packages like jshint?
+echo "Please install jq and xmllint"
+echo "apt install jq"
+echo "apt install libxml2-utils"
