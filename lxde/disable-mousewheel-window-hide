@@ -1,0 +1,43 @@
+# TODO: Should we symlink the whole file?
+
+# http://xahlee.info/linux/linux_disable_mouse_wheel_hide_window.html
+
+# Comment out these lines in
+#   ~/.config/openbox/lxde-rc.xml
+#
+# And then
+#   openbox-lxde --reconfigure
+#
+
+        <context name='Titlebar'>
+            <mousebind button='Left' action='Drag'>
+                <action name='Move'/>
+            </mousebind>
+            <mousebind button='Left' action='DoubleClick'>
+                <action name='ToggleMaximize'/>
+            </mousebind>
+
+    <!-- Disable annoying mousewheel window hiding.
+            <mousebind button='Up' action='Click'>
+                <action name='if'>
+                    <shaded>no</shaded>
+                    <then>
+                        <action name='Shade'/>
+                        <action name='FocusToBottom'/>
+                        <action name='Unfocus'/>
+                        <action name='Lower'/>
+                    </then>
+                </action>
+            </mousebind>
+            <mousebind button='Down' action='Click'>
+                <action name='if'>
+                    <shaded>yes</shaded>
+                    <then>
+                        <action name='Unshade'/>
+                        <action name='Raise'/>
+                    </then>
+                </action>
+            </mousebind>
+    -->
+
+        </context>
