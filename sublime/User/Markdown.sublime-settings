@@ -9,5 +9,7 @@
 	[
 		100
 	],
-	"word_wrap": false
+	"word_wrap": true,
+	"wrap_width": 100,
+	"highlight_line": true,
 }
