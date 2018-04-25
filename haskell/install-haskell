@@ -1,0 +1,28 @@
+# Add PPA for haskell stuff
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:hvr/ghc
+sudo apt update
+
+# NOTE: This should also install ghc haskell compiler
+sudo apt install cabal-install
+
+# Creates cabal config?
+cabal update
+
+# Compiles up-to-date version of cabal-install
+cabal install cabal-install
+
+# This new cabal is found in $HOME/cabal/bin
+# So lets add it to the path
+
+vim ~/.bashrc-mine
+
+# Add to end of file (not needed if already added to my repo)
+export PATH="$HOME/.cabal/bin:$PATH"
+
+# RELAOD
+source ~/.profile
+
+# Now we should see a new version
+cabal --version
