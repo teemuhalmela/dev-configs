@@ -1,3 +1,4 @@
+# NOTE: This is added automatically with the script
 # Instant effect
 setxkbmap -option "nbsp:none"
 # Put this line into /etc/default/keyboard for permanent fix

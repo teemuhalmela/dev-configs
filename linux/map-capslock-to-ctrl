@@ -1,2 +1,3 @@
+# NOTE: This is added automaitcally with the script
 # Put this line into /etc/default/keyboard
 XKBOPTIONS="ctrl:nocaps"
