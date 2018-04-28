@@ -52,5 +52,6 @@
 	"trim_trailing_white_space_on_save": false,
 	"vintageous_ignorecase": true,
 	"vintageous_use_ctrl_keys": true,
+	"auto_complete_commit_on_tab":  true,
 	"word_wrap": "false"
 }
