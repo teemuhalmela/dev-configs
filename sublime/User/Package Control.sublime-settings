@@ -18,6 +18,7 @@
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
 		"SublimeLinter-php",
+		"SublimeLinter-shellcheck",
 		"SublimeLinter-xmllint",
 		"ToggleNeoVintageous",
 		"Xdebug Client"
