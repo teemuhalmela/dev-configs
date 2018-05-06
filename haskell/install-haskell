@@ -1,3 +1,23 @@
+# Lets start with something simpler
+
+# Add PPA for haskell stuff
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:hvr/ghc
+sudo apt update
+
+# Check what is the newest haskell compiler
+apt list ghc-*
+# Lets install that
+sudo apt install ghc-8.4.2
+
+# Compiler is installed in /opt/ghc
+# To access it we can add /opt/ghc/bin to our path
+# That should be in our bashrc-mine file
+
+
+# DEPRECATED
+
 # Add PPA for haskell stuff
 sudo apt update
 sudo apt install software-properties-common
