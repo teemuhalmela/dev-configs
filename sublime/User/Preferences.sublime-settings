@@ -16,7 +16,9 @@
 		"*.jar",
 		"*.zip",
 		"*/library/*",
-		"*/node_modules/*"
+		"*/node_modules/*",
+		"*.hi",
+		"*.o"
 	],
 	"caret_style": "phase",
 	"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).tmTheme",
