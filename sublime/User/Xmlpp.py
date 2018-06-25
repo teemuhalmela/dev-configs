@@ -11,7 +11,7 @@ import subprocess
 
 class XmlppCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        command = 'xmllint --format --encode utf-8 -'
+        command = 'xmllint --format -'
 
         if self.view.sel()[0].empty():
           xmlRegion = sublime.Region(0, self.view.size())
