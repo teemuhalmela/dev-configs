@@ -37,3 +37,7 @@ sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 # Git should be already installed
 sudo apt upgrade
+
+# Install if needed
+# keepassx
+# keychain
