@@ -1,3 +1,15 @@
 {
-    "workbench.startupEditor": "welcomePage"
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.renderWhitespace": "all",
+    "editor.accessibilitySupport": "off",
+    "workbench.colorTheme": "Solarized Dark",
+    "git.enabled": false,
+    "editor.fontSize": 18,
+    "editor.lineNumbers": "off",
+    "editor.minimap.enabled": false,
+    "editor.smoothScrolling": true,
+    "editor.mouseWheelScrollSensitivity": 3,
+    "workbench.sideBar.location": "left",
+    "workbench.activityBar.visible": false,
+    "editor.renderControlCharacters": true
 }
