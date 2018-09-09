@@ -1,0 +1,4 @@
+sudo apt install openjdk-8-jdk
+
+# Get language server package from http://download.eclipse.org/jdtls/milestones/?d
+# And put it in $HOME/jdt-language-server
