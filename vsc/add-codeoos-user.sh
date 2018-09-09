@@ -13,3 +13,6 @@ if [ -d "$userdir" ]; then
 fi
 
 ln -sf "$PWD/User" "$userdir"
+
+
+./installExtensions.sh
