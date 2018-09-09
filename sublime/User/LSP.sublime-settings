@@ -11,7 +11,7 @@
 				"-configuration",
 				"~/jdt-language-server/config_linux"
 			],
-			"enabled": true,
+			"enabled": false,
 			"languageId": "java",
 			"scopes":
 			[
@@ -22,6 +22,5 @@
 				"Packages/Java/Java.sublime-syntax"
 			]
 		}
-	},
-	"log_debug": true
+	}
 }
