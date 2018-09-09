@@ -7,8 +7,7 @@
 	[
 		"All Autocomplete",
 		"DiffTabs",
-		"Dockerfile Syntax Highlighting",
-		"Elm Language Support",
+		"LSP",
 		"MarkdownEditing",
 		"NeoVintageous",
 		"Package Control",
@@ -17,10 +16,7 @@
 		"SublimeLinter-annotations",
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
-		"SublimeLinter-php",
 		"SublimeLinter-shellcheck",
-		"SublimeLinter-xmllint",
-		"ToggleNeoVintageous",
-		"Xdebug Client"
+		"SublimeLinter-xmllint"
 	]
 }

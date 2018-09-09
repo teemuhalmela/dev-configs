@@ -1,0 +1,27 @@
+{
+	"clients":
+	{
+		"jdtls":
+		{
+			"command":
+			[
+				"java",
+				"-jar",
+				"~/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.5.100.v20180827-1352.jar",
+				"-configuration",
+				"~/jdt-language-server/config_linux"
+			],
+			"enabled": true,
+			"languageId": "java",
+			"scopes":
+			[
+				"source.java"
+			],
+			"syntaxes":
+			[
+				"Packages/Java/Java.sublime-syntax"
+			]
+		}
+	},
+	"log_debug": true
+}
