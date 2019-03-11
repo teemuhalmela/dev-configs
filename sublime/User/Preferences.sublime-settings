@@ -15,17 +15,44 @@
 		"*.swf",
 		"*.jar",
 		"*.zip",
-		"*/library/*",
+		"*/bin/*",
+		"*/build/*",
 		"*/node_modules/*",
+		"*/.apt_generated/*",
 		"*.hi",
-		"*.o"
+		"*.o",
+		"*.pyc",
+		"*.pyo",
+		"*.exe",
+		"*.dll",
+		"*.obj",
+		"*.o",
+		"*.a",
+		"*.lib",
+		"*.so",
+		"*.dylib",
+		"*.ncb",
+		"*.sdf",
+		"*.suo",
+		"*.pdb",
+		"*.idb",
+		".DS_Store",
+		"*.class",
+		"*.psd",
+		"*.db",
+		"*.bin",
+		"*.war",
+		"*.sublime-workspace"
 	],
 	"caret_style": "phase",
 	"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",
 	"default_line_ending": "unix",
 	"draw_white_space": "all",
+	"file_exclude_patterns":
+	[
+	],
 	"fold_buttons": false,
-	"font_size": 14,
+	"font_size": 15,
 	"gutter": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -40,11 +67,12 @@
 	],
 	"line_numbers": false,
 	"margin": 0,
+	"neovintageous_build_version": 11000,
 	"rulers":
 	[
 		80
 	],
-	"show_definitions": false,
+	"show_definitions": true,
 	"show_encoding": true,
 	"show_line_endings": true,
 	"theme": "Adaptive.sublime-theme",
@@ -52,5 +80,6 @@
 	"trim_trailing_white_space_on_save": false,
 	"vintageous_ignorecase": true,
 	"vintageous_use_ctrl_keys": true,
+	"vintageous_use_super_keys": null,
 	"word_wrap": "false"
 }

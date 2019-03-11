@@ -6,8 +6,8 @@
 	"installed_packages":
 	[
 		"All Autocomplete",
+		"Babel",
 		"DiffTabs",
-		"LSP",
 		"MarkdownEditing",
 		"NeoVintageous",
 		"Package Control",
@@ -17,6 +17,7 @@
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
 		"SublimeLinter-shellcheck",
-		"SublimeLinter-xmllint"
+		"SublimeLinter-xmllint",
+		"TypeScript Syntax"
 	]
 }
