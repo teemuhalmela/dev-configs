@@ -1,10 +1,11 @@
 #!/bin/bash -e
 
-configdir="$HOME/.config/Code - OSS"
+configdir="$HOME/.config/VSCodium"
 userdir="$configdir/User"
 
 if [ ! -d "$configdir" ]; then
     echo "Please install Visual studio code."
+    echo "See get-visual-studio-code.md"
     exit 1
 fi
 

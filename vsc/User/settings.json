@@ -11,5 +11,6 @@
     "editor.mouseWheelScrollSensitivity": 3,
     "workbench.sideBar.location": "left",
     "workbench.activityBar.visible": false,
-    "editor.renderControlCharacters": true
+    "editor.renderControlCharacters": true,
+    "java.configuration.checkProjectSettingsExclusions": false
 }
