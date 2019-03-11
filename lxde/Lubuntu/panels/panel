@@ -4,7 +4,7 @@
 Global {
   edge=right
   allign=left
-  margin=0
+  margin=20
   widthtype=percent
   width=100
   height=50
@@ -63,6 +63,14 @@ Plugin {
   }
 }
 Plugin {
+  type=launchbar
+  Config {
+    Button {
+      id=/home/newuser/eclipse/eclipse
+    }
+  }
+}
+Plugin {
   type=space
   Config {
     Size=30
@@ -86,22 +94,6 @@ Plugin {
 Plugin {
   type=pager
   Config {
-  }
-}
-Plugin {
-  type=monitors
-  Config {
-    DisplayCPU=1
-    DisplayRAM=0
-    CPUColor=#00FF00
-  }
-}
-Plugin {
-  type=monitors
-  Config {
-    DisplayCPU=0
-    DisplayRAM=1
-    RAMColor=#0055CC
   }
 }
 Plugin {
