@@ -5,6 +5,7 @@ import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.NamedScratchpad
 import XMonad.Layout.Gaps
 import XMonad.Layout.TwoPane
+import XMonad.Layout.SimpleFloat
 import XMonad.Layout.PerWorkspace (onWorkspace, onWorkspaces)
 import qualified XMonad.StackSet as W
 import Control.Monad (liftM2)
@@ -27,13 +28,14 @@ myWorkspaces =
     , "9:rand3"
     ]
 
-myLayouts = onWorkspaces ["3:subl", "4:firefox", "5:chrome"] (Full ||| twoCols)
+myLayouts = onWorkspaces ["3:subl", "4:firefox", "5:chrome"] (Full ||| twoCols ||| simpleFloat)
     where
         tiled = Tall 1 (3/100) (1/2)
         twoCols = TwoPane (3/100) (1/2)
 
 scratchpads =
     [ NS "scratch" "urxvt -name scratch" (title =? "scratch") place
+    , NS "keepassx" "keepassx" (className =? "Keepassx") place
     ]
    where
     place = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
@@ -42,6 +44,7 @@ myManageHook :: ManageHook
 myManageHook = composeAll
         [ className =? "Firefox" --> viewShift "4:firefox"
         , className =? "Sublime_text" --> viewShift "3:subl"
+        , className =? "Gpicview" --> doFloat
         ]
         <+> namedScratchpadManageHook scratchpads
     where viewShift = doF . liftM2 (.) W.greedyView W.shift
@@ -49,7 +52,8 @@ myManageHook = composeAll
 myKeys =
     [ ("M-q", spawn "killall conky dzen2 && xmonad --recompile && xmonad --restart")
     , ("M-t", namedScratchpadAction scratchpads "scratch")
-    ]
+    , ("M-s", namedScratchpadAction scratchpads "keepassx")
+   ]
 
 main = do
     screenWidth <- getScreenWidth 0
@@ -84,10 +88,10 @@ conkyBar = "conky | " ++ myDzen ++ " -e '' -ta r"
 infoBar = myDzen ++ " -e '' -ta l"
 
 getConkyBar :: Int -> String
-getConkyBar sw = getBar conkyBar (sw-1000) 1000
+getConkyBar sw = getBar conkyBar (sw-1500) 1500
 
 getInfoBar :: Int -> String
-getInfoBar sw = getBar infoBar 0 (sw-1000)
+getInfoBar sw = getBar infoBar 0 (sw-1500)
 
 getBar :: String -> Int -> Int -> String
 getBar bar x w = bar ++ " -x " ++ show x ++ " -w " ++ show w
