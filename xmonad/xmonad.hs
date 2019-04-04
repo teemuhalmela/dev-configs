@@ -13,12 +13,16 @@ import System.IO
 
 import Graphics.X11.Xinerama
 
-myFont = "xft:Monospace:pixelsize=14"
+myFont = "Monospace:pixelsize=14"
 myBarHeight = 20
+myDzen = "dzen2 -fn '" ++ myFont ++ "' -h " ++ (show myBarHeight) ++ " \
+    \ -bg '#000000' -fg '#ffffff' -p -xs 1"
+conkyBar = "conky | " ++ myDzen ++ " -e '' -ta r"
+infoBar = myDzen ++ " -e '' -ta l"
 
 myWorkspaces =
     [ "1:main"
-    , "2:tmux"
+    , "2:eclipse"
     , "3:subl"
     , "4:firefox"
     , "5:chrome"
@@ -43,8 +47,12 @@ scratchpads =
 myManageHook :: ManageHook
 myManageHook = composeAll
         [ className =? "Firefox" --> viewShift "4:firefox"
+        , className =? "Google_chrome" --> viewShift "5:chrome"
         , className =? "Sublime_text" --> viewShift "3:subl"
+        , className =? "Eclipse" --> viewShift "2:eclipse"
         , className =? "Gpicview" --> doFloat
+        , className =? "Pcmanfm" --> doFloat
+        , className =? "Evince" --> doFloat
         ]
         <+> namedScratchpadManageHook scratchpads
     where viewShift = doF . liftM2 (.) W.greedyView W.shift
@@ -80,12 +88,6 @@ getScreenWidth n = do
         Just [] -> 0
         Just ss -> if n >= 0 && n < length ss
             then fromIntegral . xsi_width $ ss !! n else 0
-
-
-myDzen = "dzen2 -fn '" ++ myFont ++ "' -h " ++ (show myBarHeight) ++ " \
-    \ -bg '#000000' -fg '#ffffff' -p -xs 1"
-conkyBar = "conky | " ++ myDzen ++ " -e '' -ta r"
-infoBar = myDzen ++ " -e '' -ta l"
 
 getConkyBar :: Int -> String
 getConkyBar sw = getBar conkyBar (sw-1500) 1500
