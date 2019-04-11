@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageHelpers (isDialog, (/=?), isInProperty)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.NamedScratchpad
@@ -28,8 +29,6 @@ myWorkspaces =
     , "5:chrome"
     , "6:dev"
     , "7:rand1"
-    , "8:rand2"
-    , "9:rand3"
     ]
 
 myLayouts = onWorkspaces ["3:subl", "4:firefox", "5:chrome"] (Full ||| twoCols ||| simpleFloat)
@@ -45,17 +44,31 @@ scratchpads =
     place = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
 myManageHook :: ManageHook
-myManageHook = composeAll
+myManageHook = composeAll . concat $ [
         [ className =? "Firefox" --> viewShift "4:firefox"
-        , className =? "Google_chrome" --> viewShift "5:chrome"
+        , className =? "Google-chrome" --> viewShift "5:chrome"
         , className =? "Sublime_text" --> viewShift "3:subl"
         , className =? "Eclipse" --> viewShift "2:eclipse"
-        , className =? "Gpicview" --> doFloat
-        , className =? "Pcmanfm" --> doFloat
-        , className =? "Evince" --> doFloat
+
+        ,(className =? "Firefox" <&&> role /=? "browser") --> doFloat
+        ,(className =? "Google-chrome" <&&> role /=? "browser") --> doFloat
+        , isDialog --> doFloat
+        , isSplash --> doFloat
+
+        , namedScratchpadManageHook scratchpads
         ]
-        <+> namedScratchpadManageHook scratchpads
-    where viewShift = doF . liftM2 (.) W.greedyView W.shift
+        , [ className =?  c --> doFloat | c <- myFloats ]
+        ]
+    where
+        role = stringProperty "WM_WINDOW_ROLE"
+        viewShift = doF . liftM2 (.) W.greedyView W.shift
+        isSplash = (isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
+            <||> isInProperty "_NET_WM_STATE" "_NET_WM_STATE_MODAL")
+        myFloats =
+            [ "GpicView"
+            , "Pcmanfm"
+            , "Evince"
+            ]
 
 myKeys =
     [ ("M-q", spawn "killall conky dzen2 && xmonad --recompile && xmonad --restart")
