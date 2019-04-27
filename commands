@@ -1,0 +1,4 @@
+# Expand lvm volume
+sudo vgdisplay
+sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+sudo e2fsck -f /dev/mapper/ubuntu--vg-ubuntu--lv
