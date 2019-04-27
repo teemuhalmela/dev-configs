@@ -80,6 +80,7 @@ otherStuff() {
     runIn "urxvt" "enable-urxvt-configs.sh"
     runIn "vim" "add-vim-config.sh"
     runIn "xmonad" "add-xmonad.sh"
+    runIn "firefox" "add-firefox-userjs.sh"
 }
 
 installTpm() {
