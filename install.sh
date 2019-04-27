@@ -28,7 +28,6 @@ main() {
 
 sudoRuns() {
     sudo -v -p "NEED ACCESS: "
-    sudo apt-get update && sudo apt-get upgrade -y
 
     sudo update-alternatives --set editor /usr/bin/vim.basic
     sudo timedatectl set-timezone "Europe/Helsinki"

@@ -4,8 +4,8 @@ trap 'clean' 0
 
 main() {
     sudo -v
-    #sudo apt-get update && sudo apt-get install -y build-essential
-    sudo mkdir -p /mnt/cdrom
+    sudo apt-get update && sudo apt-get install -y build-essential
+    sudo mkdir -p /media/cdrom
     sudo mount /dev/cdrom /media/cdrom
     sudo /media/cdrom/VBoxLinuxAdditions.run
 }
@@ -15,6 +15,7 @@ clean() {
     echo "CLEANING"
     sudo umount /media/cdrom
     sudo -k
+    eject
 }
 
 main $@
