@@ -11,6 +11,9 @@ import XMonad.Layout.PerWorkspace (onWorkspace, onWorkspaces)
 import qualified XMonad.StackSet as W
 import Control.Monad (liftM2)
 import System.IO
+import System.Directory (getHomeDirectory)
+import System.FilePath (joinPath)
+import Data.List (isPrefixOf)
 
 import Graphics.X11.Xinerama
 
@@ -46,9 +49,9 @@ scratchpads =
 myManageHook :: ManageHook
 myManageHook = composeAll . concat $ [
         [ className =? "Firefox" --> viewShift "4:firefox"
-        , className =? "Google-chrome" --> viewShift "5:chrome"
+        , className =? "Google-chrome" --> doShift "5:chrome"
         , className =? "Sublime_text" --> viewShift "3:subl"
-        , className =? "Eclipse" --> viewShift "2:eclipse"
+        , className =? "Eclipse" --> doShift "2:eclipse"
 
         ,(className =? "Firefox" <&&> role /=? "browser") --> doFloat
         ,(className =? "Google-chrome" <&&> role /=? "browser") --> doFloat
@@ -80,6 +83,10 @@ main = do
     screenWidth <- getScreenWidth 0
     dockConky <- spawnPipe (getConkyBar screenWidth)
     dockInfo <- spawnPipe (getInfoBar screenWidth)
+    conkyPath <- getConkyConfigPath
+    cpuCount <- getCpuCount
+
+    writeFile conkyPath (getConkyConfig (read cpuCount))
 
     xmonad $ def
         { manageHook = myManageHook <+> manageHook def
@@ -110,3 +117,47 @@ getInfoBar sw = getBar infoBar 0 (sw-1500)
 
 getBar :: String -> Int -> Int -> String
 getBar bar x w = bar ++ " -x " ++ show x ++ " -w " ++ show w
+
+getConkyConfig :: Int -> String
+getConkyConfig x = "\
+\conky.config = {\n\
+\    out_to_x = false,\n\
+\    out_to_console = true,\n\
+\    update_interval = 1,\n\
+\    use_spacer = 'left',\n\
+\    net_avg_samples = 2,\n\
+\    pad_percents = 3\n\
+\}\n\
+\\n\
+\conky.text = [[\n\
+\${downspeed enp0s3} ${color2}${upspeed enp0s3} \\\n\
+\|" ++ (getCpus "" x) ++ " \\\n\
+\${cpu cpu0}% ${loadavg 1} ${loadavg 2} ${loadavg 3} \\\n\
+\|${diskio_read /dev/sda} ${diskio_write /dev/sda} ${diskio /dev/sda} \\\n\
+\${fs_used_perc /}% \\\n\
+\| $mem $memperc% \\\n\
+\$swap \\\n\
+\| ${top name 1} ${top pid 1} \\\n\
+\| ${time %F %T} \\\n\
+\]]\
+\\n"
+
+getCpuCount :: IO String
+getCpuCount = do
+    -- We read core count from file, because xmonad didn't work correctly
+    -- with readProcess. Some problem with SIGCHILD
+    info <- readFile "/proc/cpuinfo"
+    let line = head (filter (\s -> "cpu cores" `isPrefixOf` s) (lines info))
+    return [(line !! ((length line)-1))]
+
+getCpus :: String -> Int -> String
+getCpus x 0 = x
+getCpus x y = getCpus (" " ++ getCpustring y ++ x) (y-1)
+
+getCpustring :: Int -> String
+getCpustring x = "${cpu cpu" ++ show x ++ "}"
+
+getConkyConfigPath :: IO FilePath
+getConkyConfigPath = do
+    home <- getHomeDirectory
+    return (joinPath [home, ".config", "conky", "conky.conf"])
