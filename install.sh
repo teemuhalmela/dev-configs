@@ -24,10 +24,17 @@ main() {
     echo ""
     echo "Remember to install TMUX plugins by running CTRL+A CTRL SHIFT+I"
     echo "Remember to configure sublimetext after running it."
+
+    echo ""
+    echo "WE ARE DONE"
 }
 
 sudoRuns() {
     sudo -v -p "NEED ACCESS: "
+
+    sudo apt-get update
+    # Needed for minimal install
+    sudo apt-get install -y software-properties-common
 
     sudo update-alternatives --set editor /usr/bin/vim.basic
     sudo timedatectl set-timezone "Europe/Helsinki"
