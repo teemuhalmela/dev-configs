@@ -8,6 +8,8 @@ main() {
     sudo mkdir -p /media/cdrom
     sudo mount /dev/cdrom /media/cdrom
     sudo /media/cdrom/VBoxLinuxAdditions.run
+
+    sudo usermod -G vboxsf -a $USER
 }
 
 clean() {
