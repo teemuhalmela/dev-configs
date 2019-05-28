@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers (isDialog, (/=?), isInProperty)
+import XMonad.Hooks.SetWMName
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.NamedScratchpad
@@ -95,6 +96,7 @@ main = do
         , layoutHook = gaps [(U,myBarHeight),(D,0),(L,0),(R,0)] $ myLayouts $ layoutHook def
         , terminal = "urxvt"
         , workspaces = myWorkspaces
+        , startupHook = setWMName "LG3D"
         , logHook = dynamicLogWithPP $ def
                     { ppOutput = hPutStrLn dockInfo
                     , ppTitle = shorten 100
