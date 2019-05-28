@@ -43,7 +43,8 @@ myLayouts = onWorkspaces ["3:subl", "4:firefox", "5:chrome"] (Full ||| twoCols |
 scratchpads =
     [ NS "scratch" "urxvt -name scratch" (title =? "scratch") place
     , NS "keepassx" "keepassx" (className =? "Keepassx") place
-    , NS "notes" "subl -n ~/notes" (title =? "~/notes - Sublime Text") place
+    , NS "notes" "subl -n ~/notes" (title =? "~/notes - Sublime Text"
+        <||>  title =? "~/notes • - Sublime Text") place
     ]
    where
     place = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
@@ -52,7 +53,8 @@ myManageHook :: ManageHook
 myManageHook = composeAll . concat $ [
         [ className =? "Firefox" --> viewShift "4:firefox"
         , className =? "Google-chrome" --> doShift "5:chrome"
-        ,(className =? "Sublime_text" <&&> title /=? "~/notes - Sublime Text") --> viewShift "3:subl"
+        ,(className =? "Sublime_text" <&&> title /=? "~/notes - Sublime Text"
+            <&&> title /=? "~/notes • - Sublime Text") --> viewShift "3:subl"
         , className =? "Eclipse" --> doShift "2:eclipse"
 
         ,(className =? "Firefox" <&&> role /=? "browser") --> doFloat
