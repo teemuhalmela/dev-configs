@@ -76,7 +76,7 @@ myManageHook = composeAll . concat $ [
 
 myKeys =
     [ ("M-q", spawn "killall conky dzen2 && xmonad --recompile && xmonad --restart")
-    , ("M-t", namedScratchpadAction scratchpads "scratch")
+    --, ("M-t", namedScratchpadAction scratchpads "scratch")
     , ("M-s", namedScratchpadAction scratchpads "keepassx")
     , ("M-n", namedScratchpadAction scratchpads "notes")
    ]
