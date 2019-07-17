@@ -36,7 +36,6 @@ sudoRuns() {
     # Needed for minimal install
     sudo apt-get install -y software-properties-common
 
-    sudo update-alternatives --set editor /usr/bin/vim.basic
     sudo timedatectl set-timezone "Europe/Helsinki"
 
     prepareChrome
@@ -47,6 +46,8 @@ sudoRuns() {
     sudo apt-get update && sudo apt-get --with-new-pkgs upgrade -y
 
     installApps
+
+    sudo update-alternatives --set editor /usr/bin/vim.basic
 
     pushd cron
     sudo ./add-cron-jobs.sh

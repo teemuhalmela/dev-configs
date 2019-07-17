@@ -18,3 +18,8 @@ libxml2-utils
 keepassx
 keychain
 tuxcmd
+zip
+unzip
+curl
+numlockx
+net-tools
