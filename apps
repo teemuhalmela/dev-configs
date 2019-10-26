@@ -1,6 +1,6 @@
 vim
 git
-xorg
+xserver-xorg
 xdm
 xmonad
 conky
