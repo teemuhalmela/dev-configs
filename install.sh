@@ -57,6 +57,10 @@ sudoRuns() {
     sudo ./add-keyboard-config.sh
     popd
 
+    pushd xdm
+    sudo ./add-xdm-config.sh
+    popd
+
     sudo -k
 }
 

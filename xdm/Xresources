@@ -1,0 +1,24 @@
+xlogin*geometry: 800x200+0-0
+
+xlogin*failTimeout: 1
+
+xlogin*foreground: green
+xlogin*background: gray17
+
+xlogin*frameWidth: 0
+xlogin*innerFramesWidth: 0
+xlogin*sepWidth: 0
+
+xlogin*greetColor: orange
+xlogin*promptColor: orange
+xlogin*failColor: yellow
+
+xlogin*greeting:
+xlogin*namePrompt:   NAME    
+xlogin*passwdPrompt: PASSWORD
+xlogin*fail: NOPE
+
+xlogin*face:		DejavuMono-18
+xlogin*greetFace:	DejavuMono-18:bold
+xlogin*promptFace:	DejavuMono-18:bold
+xlogin*failFace:	DejavuMono-24:bold
