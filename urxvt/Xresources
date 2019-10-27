@@ -20,13 +20,13 @@
 #define base0E #6c71c4
 #define base0F #d33682
 
-*foreground:   base05
+*foreground:   base04
 #ifdef background_opacity
 *background:   [background_opacity]base00
 #else
 *background:   base00
 #endif
-*cursorColor:  base05
+*cursorColor:  base04
 
 *color0:       base00
 *color1:       base08
