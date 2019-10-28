@@ -23,7 +23,7 @@ user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
 
 user_pref("signon.rememberSignons", false);
-user_pref("media.autoplay.default", 1);
+user_pref("media.autoplay.default", 5);
 user_pref("xpinstall.whitelist.required", true);
 user_pref("dom.disable_open_during_load", true);
 
@@ -49,3 +49,6 @@ user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 
 // Block all third party
 user_pref("network.cookie.cookieBehavior", 1);
+
+// Do not show highlights on empty tab
+user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
