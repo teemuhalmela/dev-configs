@@ -130,7 +130,7 @@ getScreenHeight n = do
 
 getHeights :: Int -> (Int,Int)
 getHeights w
-    | w <= 1080 = (14, 18)
+    | w <= 1080 = (12, 18)
     | otherwise = (14, 20)
 
 getConkyBar :: Int -> (Int,Int) -> String
