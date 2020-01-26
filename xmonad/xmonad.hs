@@ -18,9 +18,8 @@ import Data.List (isPrefixOf)
 
 import Graphics.X11.Xinerama
 
-myFont = "Monospace:pixelsize=14"
-myBarHeight = 20
-myDzen = "dzen2 -fn '" ++ myFont ++ "' -h " ++ (show myBarHeight) ++ " \
+myFont = "Monospace:pixelsize="
+myDzen = "dzen2 \
     \ -bg 'black' -fg 'white' -p -xs 1"
 conkyBar = "conky | " ++ myDzen ++ " -e '' -ta r"
 infoBar = myDzen ++ " -e '' -ta l"
@@ -88,8 +87,10 @@ myKeys =
 
 main = do
     screenWidth <- getScreenWidth 0
-    dockConky <- spawnPipe (getConkyBar screenWidth)
-    dockInfo <- spawnPipe (getInfoBar screenWidth)
+    screenHeight <- getScreenHeight 0
+    let heights = getHeights screenHeight
+    dockConky <- spawnPipe (getConkyBar screenWidth heights)
+    dockInfo <- spawnPipe (getInfoBar screenWidth heights)
     conkyPath <- getConkyConfigPath
     cpuCount <- getCpuCount
 
@@ -97,7 +98,7 @@ main = do
 
     xmonad $ def
         { manageHook = myManageHook <+> manageHook def
-        , layoutHook = gaps [(U,myBarHeight),(D,0),(L,0),(R,0)] $ myLayouts $ layoutHook def
+        , layoutHook = gaps [(U,(snd heights)),(D,0),(L,0),(R,0)] $ myLayouts $ layoutHook def
         , terminal = "urxvt"
         , workspaces = myWorkspaces
         , startupHook = setWMName "LG3D"
@@ -117,14 +118,33 @@ getScreenWidth n = do
         Just ss -> if n >= 0 && n < length ss
             then fromIntegral . xsi_width $ ss !! n else 0
 
-getConkyBar :: Int -> String
-getConkyBar sw = getBar conkyBar (sw-1500) 1500
+getScreenHeight :: Int -> IO Int
+getScreenHeight n = do
+    d        <- openDisplay ""
+    screens  <- xineramaQueryScreens d
+    return $ case screens of
+        Nothing -> 0
+        Just [] -> 0
+        Just ss -> if n >= 0 && n < length ss
+            then fromIntegral . xsi_height $ ss !! n else 0
 
-getInfoBar :: Int -> String
-getInfoBar sw = getBar infoBar 0 (sw-1500)
+getHeights :: Int -> (Int,Int)
+getHeights w
+    | w <= 1080 = (14, 18)
+    | otherwise = (14, 20)
 
-getBar :: String -> Int -> Int -> String
-getBar bar x w = bar ++ " -x " ++ show x ++ " -w " ++ show w
+getConkyBar :: Int -> (Int,Int) -> String
+getConkyBar sw (fsize, height) = getBar conkyBar fsize height (sw-1500) 1500
+
+getInfoBar :: Int -> (Int,Int) -> String
+getInfoBar sw (fsize, height) = getBar infoBar fsize height 0 (sw-1500)
+
+getBar :: String -> Int -> Int -> Int -> Int -> String
+getBar bar fsize height x w = bar
+    ++ " -fn '" ++ myFont ++ show fsize ++ "'"
+    ++ " -h " ++ show height
+    ++ " -x " ++ show x
+    ++ " -w " ++ show w
 
 getConkyConfig :: Int -> String
 getConkyConfig x = "\
@@ -142,7 +162,7 @@ getConkyConfig x = "\
 \|" ++ (getCpus "" x) ++ " \\\n\
 \${cpu cpu0}% ${loadavg 1} ${color} ${loadavg 2} ${loadavg 3} \\\n\
 \|${diskio_read /dev/sda} ${diskio_write /dev/sda} ${diskio /dev/sda} \\\n\
-\" ++ (noticeIfGt "fs_used_perc" "70") ++ "\\\n\
+\ " ++ (noticeIfGt "fs_used_perc" "70") ++ "\\\n\
 \| $mem " ++ (noticeIfGt "memperc" "80") ++ " \\\n\
 \$swap \\\n\
 \| ${top name 1} ${top pid 1} \\\n\
