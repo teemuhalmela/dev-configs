@@ -21,9 +21,11 @@ import Graphics.X11.Xinerama
 myFont = "Monospace:pixelsize=14"
 myBarHeight = 20
 myDzen = "dzen2 -fn '" ++ myFont ++ "' -h " ++ (show myBarHeight) ++ " \
-    \ -bg '#000000' -fg '#ffffff' -p -xs 1"
+    \ -bg 'black' -fg 'white' -p -xs 1"
 conkyBar = "conky | " ++ myDzen ++ " -e '' -ta r"
 infoBar = myDzen ++ " -e '' -ta l"
+notice = "^bg(darkred)"
+normal = "^bg(black)"
 
 myWorkspaces =
     [ "1:main"
@@ -138,15 +140,19 @@ getConkyConfig x = "\
 \conky.text = [[\n\
 \${downspeed enp0s3} ${color2}${upspeed enp0s3} \\\n\
 \|" ++ (getCpus "" x) ++ " \\\n\
-\${cpu cpu0}% ${loadavg 1} ${loadavg 2} ${loadavg 3} \\\n\
+\${cpu cpu0}% ${loadavg 1} ${color} ${loadavg 2} ${loadavg 3} \\\n\
 \|${diskio_read /dev/sda} ${diskio_write /dev/sda} ${diskio /dev/sda} \\\n\
-\${fs_used_perc /}% \\\n\
-\| $mem $memperc% \\\n\
+\" ++ (noticeIfGt "fs_used_perc" "70") ++ "\\\n\
+\| $mem " ++ (noticeIfGt "memperc" "80") ++ " \\\n\
 \$swap \\\n\
 \| ${top name 1} ${top pid 1} \\\n\
 \| ${time %F %T} \\\n\
 \]]\
 \\n"
+
+noticeIfGt :: String -> String -> String
+noticeIfGt s v = "${if_match ${" ++ s ++ "} > " ++ v ++ "}"
+  ++ notice ++ "${endif}${" ++ s ++ "}% " ++ normal
 
 getCpuCount :: IO String
 getCpuCount = do
