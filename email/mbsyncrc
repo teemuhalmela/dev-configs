@@ -1,0 +1,19 @@
+Expunge None
+Create Both
+
+MaildirStore local-a
+Path ~/mail/a/
+Inbox ~/mail/a/Inbox
+Trash Trash
+
+IMAPStore def
+Host HOST
+Port 993
+SSLType IMAPS
+User MAIL
+Pass PASS
+
+Channel box-a
+Master :def:
+Slave :local-a:
+Patterns *

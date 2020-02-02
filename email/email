@@ -1,0 +1,9 @@
+sudo apt-get install esmtp
+sudo apt-get install mutt
+sudo apt-get install git-email
+
+touch ~/.esmtprc
+chmod g-rwx ~/.esmtprc
+chmod o-rwx ~/.esmtprc
+
+sudo apt-get install isync
