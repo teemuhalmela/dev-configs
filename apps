@@ -32,3 +32,4 @@ esmtp
 mutt
 git-email
 isync
+shellcheck
