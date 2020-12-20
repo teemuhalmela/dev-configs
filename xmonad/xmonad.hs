@@ -76,6 +76,7 @@ myManageHook = composeAll . concat $ [
             [ "GpicView"
             , "Pcmanfm"
             , "Evince"
+	    , "SpeedCrunch"
             ]
 
 myKeys =
