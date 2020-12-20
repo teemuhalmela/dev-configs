@@ -105,6 +105,7 @@ main = do
         , startupHook = setWMName "LG3D"
         , logHook = dynamicLogWithPP $ def
                     { ppOutput = hPutStrLn dockInfo
+                    , ppHidden = const ""
                     , ppTitle = shorten 100
                     }
         } `additionalKeysP` myKeys
