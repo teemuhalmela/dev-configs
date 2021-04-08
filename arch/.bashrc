@@ -1,0 +1,37 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+# Show git branch https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+PS1='\[\033[33m\]\D{%T}\[\033[00m\] \[\033[01;32m\]me\[\033[00m\]:\[\033[01;34m\]\W\[\033[33m\]:$?$(parse_git_branch)\[\033[00m\]\[\033[35m\]\$ \[\033[00m\]'
+
+export PATH="/opt/ghc/bin:$PATH"
+
+setxkbmap -option "nbsp:none"
+
+HISTSIZE=500000
+HISTFILESIZE=-1
+#HISTTIMEFORMAT="%FT%TZ%z "
+unset HISTTIMEFORMAT
+HISTCONTROL=erasedups:ignorespace:ignoredups
+
+shopt -s histappend
+
+PROMPT_COMMAND="history -a"
+
+set -o vi
+
+export LESS="-iMFXR"
+export IGNOREEOF="3"
+
+shopt -s checkwinsize
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto -i'
+
+if [ -f ~/.bashrc-work ]; then
+    . ~/.bashrc-work
+fi
+
