@@ -1,13 +1,15 @@
 #!/bin/bash -eu
 
 mozdir="$HOME/.mozilla/firefox"
+profilename="myprofile"
+profiledir=$(find "$mozdir" -maxdepth 1 -type d -name "*.$profilename" -print -quit)
 
-if [[ ! -d "$mozdir" ]]; then
+if [[ ! -d "$profiledir" ]]; then
     echo "Creating default profile"
-    firefox -headless -CreateProfile default
+    firefox -headless -CreateProfile "$profilename"
 fi
 
-profiledir=$(find "$mozdir" -maxdepth 1 -type d -name '*.default' -print -quit)
+profiledir=$(find "$mozdir" -maxdepth 1 -type d -name "*.$profilename" -print -quit)
 echo "Profile: $profiledir"
 
 if [[ -z "$profiledir" ]]; then

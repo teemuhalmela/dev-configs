@@ -21,6 +21,8 @@ user_pref("privacy.donottrackheader.enabled", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
+user_pref("privacy.trackingprotection.socialtracking.enabled", true);
+user_pref("privacy.trackingprotection.annotate_channels", true);
 
 user_pref("signon.rememberSignons", false);
 user_pref("media.autoplay.default", 5);

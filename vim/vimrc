@@ -37,6 +37,9 @@ set t_vb=
 set mouse=a
 set cmdheight=2
 
+set listchars=tab:——,trail:·,extends:>,precedes:<,space:·,nbsp:…
+set list
+
 " Disable arrow keys 😬
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
