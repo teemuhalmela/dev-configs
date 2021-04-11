@@ -53,14 +53,14 @@ scratchpads =
 
 myManageHook :: ManageHook
 myManageHook = composeAll . concat $ [
-        [ className =? "Firefox" --> viewShift "4:firefox"
-        , className =? "Google-chrome" --> doShift "5:chrome"
+        [ className =? "firefox" --> viewShift "4:firefox"
+        , className =? "chromium" --> doShift "5:chrome"
         ,(className =? "Sublime_text" <&&> title /=? "~/notes - Sublime Text"
             <&&> title /=? "~/notes • - Sublime Text") --> viewShift "3:subl"
         , className =? "Eclipse" --> doShift "2:eclipse"
 
-        ,(className =? "Firefox" <&&> role /=? "browser") --> doFloat
-        ,(className =? "Google-chrome" <&&> role /=? "browser") --> doFloat
+        ,(className =? "firefox" <&&> role /=? "browser") --> doFloat
+        ,(className =? "chromium" <&&> role /=? "browser") --> doFloat
         , isDialog --> doFloat
         , isSplash --> doFloat
 
