@@ -34,3 +34,5 @@ git-email
 isync
 shellcheck
 speedcrunch
+xterm
+xfonts-terminus

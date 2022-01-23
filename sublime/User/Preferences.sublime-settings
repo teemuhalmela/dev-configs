@@ -52,8 +52,11 @@
 	[
 	],
 	"fold_buttons": false,
-	"font_size": 15,
-	"gutter": true,
+	"font_face": "terminus-bold",
+	"font_options": [
+	],
+	"font_size": 14,
+	"gutter": false,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[

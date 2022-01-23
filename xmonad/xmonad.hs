@@ -9,6 +9,7 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.TwoPane
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.PerWorkspace (onWorkspace, onWorkspaces)
+import XMonad.Layout.TrackFloating
 import qualified XMonad.StackSet as W
 import Control.Monad (liftM2)
 import System.IO
@@ -18,7 +19,8 @@ import Data.List (isPrefixOf)
 
 import Graphics.X11.Xinerama
 
-myFont = "Monospace:pixelsize="
+myFont2 = "-*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1"
+-- myFont = "Monospace:pixelsize="
 myDzen = "dzen2 \
     \ -bg 'black' -fg 'white' -p -xs 1"
 conkyBar = "conky | " ++ myDzen ++ " -e '' -ta r"
@@ -36,7 +38,7 @@ myWorkspaces =
     , "7:rand1"
     ]
 
-myLayouts = onWorkspaces ["3:subl", "4:firefox", "5:chrome"] (Full ||| twoCols ||| simpleFloat)
+myLayouts = onWorkspaces myWorkspaces (Full ||| twoCols ||| tiled)
     where
         tiled = Tall 1 (3/100) (1/2)
         twoCols = TwoPane (3/100) (1/2)
@@ -99,8 +101,8 @@ main = do
 
     xmonad $ def
         { manageHook = myManageHook <+> manageHook def
-        , layoutHook = gaps [(U,(snd heights)),(D,0),(L,0),(R,0)] $ myLayouts $ layoutHook def
-        , terminal = "urxvt"
+        , layoutHook = gaps [(U,(snd heights)),(D,0),(L,0),(R,0)] $ trackFloating $ myLayouts $ layoutHook def
+        , terminal = "xterm"
         , workspaces = myWorkspaces
         , startupHook = setWMName "LG3D"
         , logHook = dynamicLogWithPP $ def
@@ -143,7 +145,8 @@ getInfoBar sw (fsize, height) = getBar infoBar fsize height 0 (sw-1500)
 
 getBar :: String -> Int -> Int -> Int -> Int -> String
 getBar bar fsize height x w = bar
-    ++ " -fn '" ++ myFont ++ show fsize ++ "'"
+    -- ++ " -fn '" ++ myFont ++ show fsize ++ "'"
+    ++ " -fn '" ++ myFont2 ++ "'"
     ++ " -h " ++ show height
     ++ " -x " ++ show x
     ++ " -w " ++ show w

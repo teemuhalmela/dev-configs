@@ -21,10 +21,12 @@ shopt -s histappend
 
 PROMPT_COMMAND="history -a"
 
-set -o vi
+#set -o vi
 
-export LESS="-iMFXR"
-export IGNOREEOF="3"
+#export LESS="-iMFXR"
+# i ignore case, M more verbose
+export LESS="-iMXR"
+export IGNOREEOF="30"
 
 shopt -s checkwinsize
 
